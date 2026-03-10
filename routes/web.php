@@ -3,6 +3,7 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CJAuthController;
+use App\Http\Controllers\CjOrderController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -38,6 +39,9 @@ Route::middleware('auth')->group(function () {
         ->name('cj.callback');
     Route::post('/cj/logout', [CJAuthController::class, 'logoutDeleteToken'])
     ->name('cj.logout');
+
+     Route::get('/cj/send-order', [CjOrderController::class, 'sendOrderPage']);
+     Route::post('/cj/send-order', [CjOrderController::class, 'sendTestOrder']);
 
 });
 
