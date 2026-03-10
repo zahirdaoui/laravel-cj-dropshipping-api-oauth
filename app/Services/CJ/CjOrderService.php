@@ -15,13 +15,6 @@ class CjOrderService
     public function __construct(CJAccount $account)
     {
         $this->account = $account;
-        $account = CjAccount::where('user_id', Auth::id())->first();
-         if ($account && $account->access_token) {
-            $this->token = $account->access_token;
-        } else {
-            $this->token = null; 
-        }
-        
     }
 
     protected function client()
@@ -35,6 +28,12 @@ class CjOrderService
     public function createOrder(array $orderData)
     {
         try{
+                $account = CjAccount::where('user_id', Auth::id())->first();
+                if ($account && $account->access_token) {
+                    $this->token = $account->access_token;
+                } else {
+                    $this->token = null; 
+                }
             
             $response = $this->client()->post(
                         $this->baseUrl . '/shopping/order/createOrderV2',
