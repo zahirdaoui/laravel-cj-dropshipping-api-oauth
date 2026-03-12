@@ -42,12 +42,12 @@ Route::middleware('auth')->group(function () {
     Route::post('/cj/logout', [CJAuthController::class, 'logoutDeleteToken'])
     ->name('cj.logout');
 
-     Route::get('/cj/send-order', [CjOrderController::class, 'sendOrderPage']);
-     Route::post('/cj/send-order', [CjOrderController::class, 'sendTestOrder']);
+     
 
-     Route::get("cj/setting" , [CjSettingController::class , 'setting']);
+     Route::get("cj/setting" , [CjSettingController::class , 'setting'])->name('cj.setting');
 
 });
-
+Route::get('/cj/send-order', [CjOrderController::class, 'sendOrderPage'])->name('cj.send-order');;
+     Route::post('/cj/send-order', [CjOrderController::class, 'sendTestOrder']);
 
 require __DIR__.'/auth.php';

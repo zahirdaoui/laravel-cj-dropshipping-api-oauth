@@ -35,7 +35,7 @@ class CJAuthService
             'clientAccountId' => $userId,
             'clientAccountName' => $userName,
             'state' => csrf_token(),
-            'clientRedirectUrl' => route('cj.callback')
+            'clientRedirectUrl' => route('cj.callback') 
         ]);
 
             return redirect($url);

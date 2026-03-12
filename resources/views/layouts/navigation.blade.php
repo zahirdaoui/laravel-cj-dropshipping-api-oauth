@@ -14,7 +14,19 @@
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                         {{ __('Dashboard') }}
+                      
                     </x-nav-link>
+                    <x-nav-link :href="route('cj.send-order')" :active="request()->routeIs('dashboard')">
+                       Send Order Test
+                    </x-nav-link>
+                    <x-nav-link :href="route('cj.setting')" :active="request()->routeIs('cj.setting')">
+                       Setting
+                    </x-nav-link>
+
+                      {{--   <a href="{{ route('cj.send-order') }}">
+                              Send Order Test
+                             </a> 
+                       --}}
                 </div>
             </div>
 
@@ -37,11 +49,9 @@
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
-
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf
-
                             <x-dropdown-link :href="route('logout')"
                                     onclick="event.preventDefault();
                                                 this.closest('form').submit();">

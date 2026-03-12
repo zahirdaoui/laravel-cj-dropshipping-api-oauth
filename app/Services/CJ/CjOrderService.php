@@ -3,6 +3,7 @@
 namespace App\Services\CJ;
 
 use App\Models\CJAccount;
+use App\Models\Store;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Http;
 
@@ -28,6 +29,19 @@ class CjOrderService
     public function createOrder(array $orderData)
     {
         try{
+
+                    /* $domain = request()->getHost(); 
+                    $store = Store::with('cjAccount')->where('domain', $domain)->first();
+                    dd($store);
+
+                    if (!$store || !$store->cjAccount) {
+                        abort(404, 'CJ token not found for this store');
+                    } */
+
+                    
+                    /* $accessToken = $store->cjAccount->access_token; */
+
+                    
                 $account = CjAccount::where('user_id', Auth::id())->first();
                 if ($account && $account->access_token) {
                     $this->token = $account->access_token;
@@ -42,7 +56,7 @@ class CjOrderService
         if ($response->failed() || ($response->json('code') ?? 200) != 200) {
             return [
                 'success' => false,
-                'message' => $response->json('message') ?? 'حدث خطأ غير معروف في CJ',
+                'message' => $response->json('message') ?? 'An error occurred while connecting to CJ',
                 'data' => $response->json()
             ];
         }
